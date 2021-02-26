@@ -16,7 +16,7 @@ from helper_functions import * # this statement imports all functions from your 
 #check_for_and_del_io_files()
 check_for_and_del_io_files('currency_pair_history.csv')
 check_for_and_del_io_files('currency_pair.txt')
-check_for_and_del_io_files('currency_pair.txt')
+check_for_and_del_io_files('trade_order.p')
 
 # Make a Dash app!
 app = dash.Dash(__name__)
@@ -45,7 +45,7 @@ app.layout = html.Div([
     # Line break
     html.Br(),
     # Candlestick graph goes here:
-    dcc.Graph(id="graph"), #add  ???
+    dcc.Graph(id="graph"),
 
     # Another line break
     html.Br(),
@@ -117,8 +117,8 @@ def update_candlestick_graph(n_clicks, value): # n_clicks doesn't get used, we o
     file_to_write_to.close()
 
     #Wait until ibkr_app runs the query and saves the historical prices csv
-    # file_path = 'currency_pair_history.csv'
-    file_path = 'util_csv.csv'
+    file_path = 'currency_pair_history.csv'
+
     while not os.path.exists(file_path):
         time.sleep(1)
     if os.path.exists(file_path):
@@ -129,7 +129,7 @@ def update_candlestick_graph(n_clicks, value): # n_clicks doesn't get used, we o
         raise ValueError("%s isn't a file!" % file_path)
 
     # Remove the file 'currency_pair_history.csv'
-    check_for_and_del_io_files('currency_pair_history.csv')
+    #check_for_and_del_io_files('currency_pair_history.csv')
 
     print(type(df))
     # print(df)
