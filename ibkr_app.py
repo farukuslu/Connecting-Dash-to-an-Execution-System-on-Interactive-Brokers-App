@@ -79,9 +79,8 @@ while True:
     # If there's a file named trade_order.p in listdir(), then enter the loop below.
     if 'trade_order.p' in listdir():
 
-        trd_ordr = pickle.load(open("trade_order.p", "rb"))
-        contract = Forex(trd_ordr)
-        order = MarketOrder(trd_ordr)
+        trd_order = pickle.load(open("trade_order.p", "rb"))
+        print(trd_order)
 
         # Create a special instance of IB() JUST for entering orders.
         # The reason for this is because the way that Interactive Brokers automatically provides valid order IDs to
@@ -91,8 +90,16 @@ while True:
         # your code goes here
         ib_orders = IB()
         ib_orders.connect(host='127.0.0.1', port=port, clientId=orders_client_id, account=acc_number)
-        new_order = ib_orders.placeOrder(order)
 
+        # "action": action,
+        # "trade_currency": trade_currency,
+        # "trade_amt": trade_amt
+
+        contract = Forex(trd_order['trade_currency'])
+        order = MarketOrder(trd_order['action'], trd_order['trade_amt'],)
+        new_order = ib.placeOrder(contract, order)
+        ib.sleep(1)
+        new_order.log
 
         # The new_order object returned by the call to ib_orders.placeOrder() that you've written is an object of class
         #   `trade` that is kept continually updated by the `ib_insync` machinery. It's a market order; as such, it will
