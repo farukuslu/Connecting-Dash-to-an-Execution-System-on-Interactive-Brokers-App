@@ -6,7 +6,7 @@ import pandas as pd
 from helper_functions import *
 
 # Define your variables here ###########################################################################################
-sampling_rate = 10 # How often, in seconds, to check for inputs from Dash?
+sampling_rate = 5 # How often, in seconds, to check for inputs from Dash?
 
 # For TWS Paper account, default port is 7497
 # For IBG Paper account, default port is 4002
@@ -108,6 +108,8 @@ while True:
         while not new_order.orderStatus.status == 'Filled':
             ib_orders.sleep(0) # we use ib_orders.sleep(0) from the ib_insync module because the async socket connection
                                # is not built for the normal time.sleep() function.
+
+        ib_orders.disconnect()
 
         # your code goes here
         check_for_and_del_io_files('trade_order.p')
