@@ -14,7 +14,7 @@ from helper_functions import * # this statement imports all functions from your 
 # Run your helper function to clear out any io files left over from old runs
 # 1:
 #check_for_and_del_io_files()
-check_for_and_del_io_files('currency_pair_history.csv')
+#check_for_and_del_io_files('currency_pair_history.csv')
 check_for_and_del_io_files('currency_pair.txt')
 check_for_and_del_io_files('trade_order.p')
 
@@ -123,7 +123,7 @@ def update_candlestick_graph(n_clicks, value): # n_clicks doesn't get used, we o
         time.sleep(1)
     if os.path.exists(file_path):
         # Read in the historical prices
-        df = pd.read_csv(file_path),
+        df = pd.read_csv(file_path)
         # df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
     else:
         raise ValueError("%s isn't a file!" % file_path)
@@ -145,7 +145,7 @@ def update_candlestick_graph(n_clicks, value): # n_clicks doesn't get used, we o
                 close=df['close']
             )
         ]
-    ),
+    )
 
     # fig = go.Figure(
     #     data=[
@@ -161,6 +161,7 @@ def update_candlestick_graph(n_clicks, value): # n_clicks doesn't get used, we o
 
     # Give the candlestick figure a title
     fig.update_layout(title='Candlestick Graph', xaxis_rangeslider_visible='slider' in value),
+    check_for_and_del_io_files('currency_pair_history.csv')
 
     #Return your updated text to currency-output, and the figure to candlestick-graph outputs
     return ('Submitted query for ' + value), fig

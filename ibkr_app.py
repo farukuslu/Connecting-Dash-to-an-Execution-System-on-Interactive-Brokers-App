@@ -24,7 +24,7 @@ acc_number = 'DU3527359'
 ########################################################################################################################
 
 # Run your helper function to clear out any io files left over from old runs
-#check_for_and_del_io_files('currency_pair_history.csv')
+check_for_and_del_io_files('currency_pair_history.csv')
 
 # Create an IB app; i.e., an instance of the IB() class from the ib_insync package
 ib = IB()
